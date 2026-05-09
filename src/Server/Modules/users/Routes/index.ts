@@ -1,9 +1,9 @@
 import { Router } from "express"
 
-import { creatUserController } from "../controllers/create-user.js"
+import {validateUserBody, create } from "../controllers/create-user.js"
 
 const userRoutes = Router()
 
-userRoutes.post("/", creatUserController)
+userRoutes.post("/", validateUserBody, create)
 
 export { userRoutes }
