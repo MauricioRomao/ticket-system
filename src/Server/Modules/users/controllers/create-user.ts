@@ -9,7 +9,7 @@ const userSchema: yup.Schema<Iuser> = yup.object().shape({
   email: yup.string().required()
 });
 
-// Middleware de validação
+// ######### Middleware de validação ######## provisorio
 export const validateUserBody: RequestHandler = async (req, res, next) => {
   try {
     await userSchema.validate(req.body, { abortEarly: false });
@@ -18,7 +18,7 @@ export const validateUserBody: RequestHandler = async (req, res, next) => {
     const yupError = error as yup.ValidationError;
     const errorValidation: Record<string, string> = {};
 
-    // Correção: mapeia apenas os campos válidos que falharam
+
     yupError.inner.forEach((e) => {
       if (e.path) {
         errorValidation[e.path] = e.message;
@@ -29,7 +29,7 @@ export const validateUserBody: RequestHandler = async (req, res, next) => {
   }
 };
 
-// Função final que cria o utilizador
+
 export const create = async (req: Request<{}, {}, Iuser>, res: Response) => {
   console.log("Dados recebidos com sucesso:", req.body);
   return res.status(StatusCodes.ACCEPTED).send("criado");
