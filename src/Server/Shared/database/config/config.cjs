@@ -1,9 +1,10 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config();
 
 module.exports = {
   development: {
     username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD === "" ? null : process.env.DB_PASSWORD,
+    password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT
@@ -11,7 +12,7 @@ module.exports = {
   test: {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
-    database: "ticket_system_test",
+    database: process.env.DB_NAME_TEST,
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT
   },
@@ -22,4 +23,4 @@ module.exports = {
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT
   }
-};
+}

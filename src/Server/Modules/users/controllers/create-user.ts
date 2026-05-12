@@ -1,36 +1,19 @@
-import { Request, RequestHandler, Response } from "express";
+import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { Iuser } from "../Types/user-create.js";
-import * as yup from "yup";
+import CreateUserService from "../Services/index.js";
 
-const userSchema: yup.Schema<Iuser> = yup.object().shape({
-  nome: yup.string().required(),
-  telefone: yup.string().required(),
-  email: yup.string().required()
-});
-
-// ######### Middleware de validação ######## provisorio
-export const validateUserBody: RequestHandler = async (req, res, next) => {
+export const create = async (req: Request, res: Response) => {
   try {
-    await userSchema.validate(req.body, { abortEarly: false });
-    return next(); // Avança para a criação se estiver tudo correto
-  } catch (error) {
-    const yupError = error as yup.ValidationError;
-    const errorValidation: Record<string, string> = {};
 
+    const user = await CreateUserService.execute(req.body);
 
-    yupError.inner.forEach((e) => {
-      if (e.path) {
-        errorValidation[e.path] = e.message;
-      }
+    return res.status(StatusCodes.CREATED).json(user);
+
+  } catch (error: any) {
+
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      error: error.message
     });
 
-    return res.status(StatusCodes.BAD_REQUEST).json({ errors: errorValidation });
   }
-};
-
-
-export const create = async (req: Request<{}, {}, Iuser>, res: Response) => {
-  console.log("Dados recebidos com sucesso:", req.body);
-  return res.status(StatusCodes.ACCEPTED).send("criado");
 };

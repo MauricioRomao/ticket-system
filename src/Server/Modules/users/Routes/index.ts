@@ -1,6 +1,7 @@
 import { Router } from "express"
 
-import {validateUserBody, create } from "../controllers/create-user.js"
+import { validateUserBody} from "../../../Shared/middleware/validateUserBody.js"
+import { create } from "../controllers/create-user.js"
 
 const userRoutes = Router()
 
