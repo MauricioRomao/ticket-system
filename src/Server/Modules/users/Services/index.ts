@@ -1,13 +1,8 @@
 import UserRepository from "../repositories/index.js";
+import {CreateUserDTO}  from "../Types/user-create.js"
 
-interface CreateUserDTO {
-  nome: string;
-  email: string;
-  telefone: string;
-}
 
 class CreateUserService {
-
   async execute(data: CreateUserDTO) {
 
     const userAlreadyExists =
@@ -22,9 +17,15 @@ class CreateUserService {
       email: data.email,
       telefone: data.telefone
     });
-
     return user;
   }
+ async getAll() {
+  const data = await UserRepository.getAll(); 
+  return data;
 }
+
+}
+
+  
 
 export default new CreateUserService();

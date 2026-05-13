@@ -1,6 +1,5 @@
-export interface Iuser {
+export interface CreateUserDTO {
   nome: string;
-  telefone:string;
-  email:string
- 
+  email: string;
+  telefone: string;
 }

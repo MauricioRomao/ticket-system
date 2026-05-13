@@ -13,6 +13,10 @@ class UserRepository {
     });
   }
 
+  async getAll (){
+    return await User.findAll()
+  }
+
 }
 
 export default new UserRepository();

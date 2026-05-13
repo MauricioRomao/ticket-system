@@ -1,4 +1,4 @@
-import { server } from './Server/server';
+import { server } from './Server/server.ts';
 import { config } from 'dotenv';
 config();
 
