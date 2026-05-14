@@ -48,7 +48,7 @@ O principal objetivo do `ticket-system` é construir uma plataforma robusta de v
 - Git & GitHub
 - Docker (planejado)
 - CI/CD (planejado)
-
+ tests
 ---
 
 # 🏗️ Arquitetura do Projeto
