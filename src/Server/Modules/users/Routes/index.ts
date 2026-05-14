@@ -1,6 +1,6 @@
 import { Router } from "express"
 
-import { validateUserBody} from "../../../Shared/middleware/validateUserBody.js"
+import { validateUserBody} from "../../../Shared/middleware/validateUserBody .js"
 import { create} from "../controllers/create-user.js"
 import { GetAll} from "../controllers/Get-users.js"
 
